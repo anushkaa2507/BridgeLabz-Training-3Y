@@ -1,0 +1,102 @@
+                             ASSIGNMENT-01
+SOLUTION 1
+
+
+FRONTEND : I) Focuses on the user interface (UI) and user experience (UX).
+           II)Designs and builds what users see and interact with.
+              III)USE-HTML, CSS, JavaScript, React, Angular, Vue.js.
+              IV)Directly interacts with users.
+              EXAMPLE: Creating buttons, forms, menus, animations, responsive layouts.
+
+2.BACKEND : I)Focuses on the server, database, and application logic.
+            II)Processes data, handles business logic, and manages databases.
+           III)USE-Python, Java, PHP, Node.js, Ruby, MySQL, MongoDB.
+           IV)Indirectly interacts with users through the frontend.
+            EXAMPLE:User authentication, storing data, processing payments, API development.
+
+3.FULL-STACK: I)Combines both frontend and backend development.
+              II)Develops both the client-side and server-side of an application.
+              III) USE-Uses both frontend and backend technologies.
+              IV)Handles both user interaction and server operations.
+              EXAMPLE: Building an entire web application from start to finish.
+
+SOLUTION 3
+
+
+1)User enters a URL in the browser.
+2)DNS converts the domain name into an IP address.
+3)The browser sends an HTTP/HTTPS request to the web server.
+4)The web server processes the request and sends back an HTTP response (HTML, CSS, JavaScript, images).
+5)The browser renders the files and displays the web page.
+
+SOLUTION 4
+
+ Tool                         Purpose                   
+
+Code Editor (VS Code)         Write and edit code.            
+Web Browser (Chrome/Firefox)  View and test web pages.        
+Developer Tools               Debug and inspect web pages.    
+Local Server (XAMPP/Node.js)  Run websites locally.           
+Git                           Track code changes.             
+GitHub                        Store and share code online.    
+Package Manager (npm)        Install and manage libraries.   
+Database (MySQL/MongoDB)      Store application data.         
+Terminal/Command Prompt       Run commands and start servers. 
+
+SOLUTION 5
+
+A web server is software that receives browser requests and sends web pages to users.
+
+Examples:
+
+Apache
+Nginx
+Microsoft IIS
+LiteSpeed
+
+SOLUTION 6
+
+Frontend Developer: Builds the user interface using HTML, CSS, and JavaScript.
+Backend Developer: Develops server-side logic, APIs, and application functionality.
+Database Administrator (DBA): Manages, secures, and maintains databases.
+
+SOLUTION 7
+
+1)Install VS Code.
+2)Install Live Server extension.
+3)Create an HTML, CSS, and JavaScript file.
+4)Open the HTML file with Live Server.
+5)Take a screenshot of the VS Code window.
+
+SOLUTION 8
+
+Static Website	                                    Dynamic Website
+Fixed content	                                    Content changes dynamically
+No database	                                    Uses a database
+Example: Portfolio website	                     Example: Amazon, Facebook
+
+SOLUTION 9
+
+Browser	               Rendering Engine
+Google Chrome	             Blink
+Microsoft Edge          	Blink
+Mozilla Firefox	             Gecko
+Apple Safari	             WebKit
+Opera	                      Blink
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
