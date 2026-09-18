@@ -1,0 +1,156 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Photo Gallery</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 36px;
+        }
+
+        /* Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* Image Container */
+        .photo {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Images */
+        .photo img {
+            width: 100%;
+            height: 250px;
+            display: block;
+            object-fit: cover;
+            border-radius: 15px;
+
+            transition: transform 0.4s ease;
+        }
+
+        /* Hover Scale */
+        .photo:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Caption Overlay */
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+
+            padding: 15px;
+
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        /* Show caption on hover */
+        .photo:hover .caption {
+            opacity: 1;
+        }
+
+        /* Responsive - Tablet */
+        @media (max-width: 800px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Responsive - Mobile */
+        @media (max-width: 500px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Photo Gallery</h1>
+
+    <div class="gallery">
+
+        <!-- Image 1 -->
+        <div class="photo">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+                 alt="Mountain Landscape">
+            <div class="caption">Beautiful Mountain</div>
+        </div>
+
+        <!-- Image 2 -->
+        <div class="photo">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+                 alt="Beach">
+            <div class="caption">Peaceful Beach</div>
+        </div>
+
+        <!-- Image 3 -->
+        <div class="photo">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e"
+                 alt="Forest">
+            <div class="caption">Green Forest</div>
+        </div>
+
+        <!-- Image 4 -->
+        <div class="photo">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e"
+                 alt="Nature">
+            <div class="caption">Beautiful Nature</div>
+        </div>
+
+        <!-- Image 5 -->
+        <div class="photo">
+            <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e"
+                 alt="Lake and Mountains">
+            <div class="caption">Mountain Lake</div>
+        </div>
+
+        <!-- Image 6 -->
+        <div class="photo">
+            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7"
+                 alt="Landscape">
+            <div class="caption">Amazing Landscape</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+```
