@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Booking</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #eae5ff, #f8f7ff);
+            min-height: 100vh;
+            padding: 104px 20px 40px;
+        }
+
+        .site-header { position: fixed; top: 0; left: 0; z-index: 10; display: flex; align-items: center; width: 100%; min-height: 80px; padding: 0 25px; background: #fff; border-top: 3px solid #353535; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+        .brand { color: #10151d; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-size: 32px; letter-spacing: -2px; line-height: .7; text-decoration: none; text-transform: lowercase; transform: skew(-4deg); }
+        .brand small { display: block; margin-top: 7px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 8px; font-weight: 800; letter-spacing: .35px; text-align: center; transform: skew(4deg); }
+        .location { display: flex; align-items: center; gap: 10px; margin-left: 34px; color: #17171a; text-decoration: none; }
+        .location svg, .search-button svg, .profile-button svg { flex: 0 0 auto; }
+        .location svg, .search-button { color: #6047ff; }
+        .location strong, .location span { display: block; }
+        .location strong { font-size: 17px; line-height: 20px; }
+        .location span { color: #55555b; font-size: 14px; line-height: 18px; }
+        .main-nav { display: flex; align-items: center; justify-content: center; gap: clamp(20px, 2.4vw, 48px); flex: 1; margin: 0 36px; }
+        .main-nav a { color: #54545a; font-size: 16px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+        .main-nav a.active { padding: 11px 19px; color: #1471d8; background: #e0f0ff; border-radius: 24px; }
+        .nav-actions { display: flex; align-items: center; gap: 25px; }
+        .search-button, .profile-button { display: grid; place-items: center; border: 0; cursor: pointer; }
+        .search-button { width: 24px; height: 24px; background: transparent; }
+        .profile-button { width: 45px; height: 45px; color: #fff; background: #d8dde5; border-radius: 50%; }
+
+        @media (max-width: 1050px) { .main-nav { gap: 18px; margin: 0 22px; } .main-nav a { font-size: 14px; } }
+        @media (max-width: 800px) { body { padding-top: 138px; } .site-header { min-height: 114px; padding: 14px 20px; flex-wrap: wrap; } .main-nav { order: 3; width: 100%; justify-content: flex-start; margin: 12px 0 0; overflow-x: auto; } .main-nav a.active { padding: 8px 15px; } .location { margin-left: 22px; } }
+        @media (max-width: 520px) { .site-header { padding: 13px 14px; } .brand { font-size: 28px; } .location { margin-left: 17px; gap: 7px; } .location strong { font-size: 15px; } .location span { font-size: 12px; } .nav-actions { margin-left: auto; gap: 12px; } .profile-button { width: 38px; height: 38px; } }
+
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 24px;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+
+
+
+
+        .movie-card {
+            width: 230px;
+            justify-self: center;
+            border: 1px solid #00000014;
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+
+            animation: cardAppear 0.6s ease forwards;
+            opacity: 0;
+
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+
+
+
+        .movie-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .movie-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .movie-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .movie-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .movie-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .movie-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .movie-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+
+
+        .movie-image {
+            overflow: hidden;
+        }
+
+        .movie-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+
+            transition: transform 0.4s ease;
+        }
+
+
+        .movie-card:hover .movie-image img {
+            transform: scale(1.08);
+        }
+
+
+        .movie-info {
+            padding: 12px;
+        }
+
+        .movie-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .movie-details {
+            color: #545459;
+        }
+
+
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .tooltip {
+            position: absolute;
+
+            bottom: 130%;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            background-color: #333;
+            color: white;
+
+            padding: 6px 10px;
+            border-radius: 5px;
+
+            font-size: 12px;
+
+            white-space: nowrap;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition: opacity 0.3s ease;
+        }
+
+
+        .tooltip-container:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+
+        .book-btn {
+            height: 35px;
+            width: 100px;
+
+            margin: 0 12px 12px;
+
+            border: none;
+            border-radius: 5px;
+
+            background-color: #545459;
+            color: white;
+
+            cursor: pointer;
+
+            transition: transform 0.2s ease,
+                        background-color 0.2s ease;
+        }
+
+
+        .book-btn:hover {
+            transform: scale(1.08);
+            background-color: #222;
+        }
+
+
+
+
+        .notification {
+            position: fixed;
+
+            top: 20px;
+            right: 20px;
+
+            padding: 15px 20px;
+
+            background-color: rgb(16, 183, 16);
+            color: white;
+
+            border-radius: 8px;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+            animation: notificationSlide 0.5s ease;
+            z-index: 2;
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 138px 12px 24px;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+
+            .movie-card {
+                width: min(100%, 300px);
+            }
+
+            .movie-image img {
+                height: 390px;
+            }
+
+            .notification {
+                top: 12px;
+                right: 12px;
+                left: 12px;
+                text-align: center;
+            }
+        }
+
+
+        @keyframes notificationSlide {
+
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <header class="site-header">
+        <a class="brand" href="#" aria-label="District home">district<small>BY ZOMATO</small></a>
+        <a class="location" href="#" aria-label="Change location">
+            <svg width="22" height="26" viewBox="0 0 22 26" fill="none" aria-hidden="true"><path d="M20 10.5c0 6.2-9 13.5-9 13.5s-9-7.3-9-13.5a9 9 0 1 1 18 0Z" stroke="currentColor" stroke-width="2.3"/><circle cx="11" cy="10.5" r="2.7" fill="currentColor"/></svg>
+            <span><strong>Gurugram</strong>Haryana</span>
+        </a>
+        <nav class="main-nav" aria-label="Primary navigation">
+            <a href="#">For you</a><a href="#">Dining</a><a class="active" href="#">Movies</a><a href="#">Events</a><a href="#">Comedy</a><a href="#">Stores</a><a href="#">Activities</a><a href="#">Play</a>
+        </nav>
+        <div class="nav-actions">
+            <button class="search-button" type="button" aria-label="Search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2.4"/><path d="m16.5 16.5 4.2 4.2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+            <button class="profile-button" type="button" aria-label="Profile"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M5.5 20v-1.4a6.5 6.5 0 0 1 13 0V20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        </div>
+    </header>
+
+    <div class="cards-container">
+
+
+        <!-- CARD 1 -->
+
+        <div class="movie-card">
+
+            <div class="movie-image">
+
+                <img src="https://cdn.district.in/movies-assets/images/cinema/_Poster-d0d78f60-961a-11f1-8483-eb84b060bac3.jpg"
+                    alt="Mirzapur movie poster">
+
+            </div>
+
+
+            <div class="movie-info">
+
+                <h3 class="movie-title">
+                    Mirzapur: The Movie
+                </h3>
+
+                <div class="tooltip-container">
+
+                    <span class="movie-details">
+                        ⭐ 8.5 | A | Hindi
+                    </span>
+
+                    <span class="tooltip">
+                        Rating based on user reviews
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button class="book-btn">
+                Book Now
+            </button>
+
+        </div>
+
+
+
+        <!-- CARD 2 -->
+
+        <div class="movie-card">
+
+            <div class="movie-image">
+
+                <img src="https://cdn.district.in/movies-assets/images/cinema/Hanuman-Ansh-3199a900-6975-11f1-a51b-91d242246b61.jpg"
+                    alt="Hanuman movie poster">
+
+            </div>
+
+            <div class="movie-info">
+
+                <h3 class="movie-title">
+                    Hanuman
+                </h3>
+
+                <div class="tooltip-container">
+
+                    <span class="movie-details">
+                        ⭐ 9.0 | U | Hindi
+                    </span>
+
+                    <span class="tooltip">
+                        Rating based on user reviews
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button class="book-btn">
+                Book Now
+            </button>
+
+        </div>
+
+
+
+        <!-- CARD 3 -->
+
+        <div class="movie-card">
+
+            <div class="movie-image">
+
+                <img src="https://cdn.district.in/movies-assets/images/cinema/_Poster-d0d78f60-961a-11f1-8483-eb84b060bac3.jpg"
+                    alt="Movie poster">
+
+            </div>
+
+            <div class="movie-info">
+
+                <h3 class="movie-title">
+                    Mirzapur
+                </h3>
+
+                <div class="tooltip-container">
+
+                    <span class="movie-details">
+                        ⭐ 8.5 | A | Hindi
+                    </span>
+
+                    <span class="tooltip">
+                        Rating based on user reviews
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button class="book-btn">
+                Book Now
+            </button>
+
+        </div>
+
+
+
+        <!-- CARD 4 -->
+
+        <div class="movie-card">
+
+            <div class="movie-image">
+
+                <img src="https://cdn.district.in/movies-assets/images/cinema/_Poster-d0d78f60-961a-11f1-8483-eb84b060bac3.jpg"
+                    alt="Movie poster">
+
+            </div>
+
+            <div class="movie-info">
+
+                <h3 class="movie-title">
+                    Mirzapur
+                </h3>
+
+                <div class="tooltip-container">
+
+                    <span class="movie-details">
+                        ⭐ 8.5 | A | Hindi
+                    </span>
+
+                    <span class="tooltip">
+                        Rating based on user reviews
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button class="book-btn">
+                Book Now
+            </button>
+
+        </div>
+
+
+
+        <!-- CARD 5 -->
+
+        <div class="movie-card">
+
+            <div class="movie-image">
+
+                <img src="https://cdn.district.in/movies-assets/images/cinema/_Poster-d0d78f60-961a-11f1-8483-eb84b060bac3.jpg"
+                    alt="Movie poster">
+
+            </div>
+
+            <div class="movie-info">
+
+                <h3 class="movie-title">
+                    Mirzapur
+                </h3>
+
+                <div class="tooltip-container">
+
+                    <span class="movie-details">
+                        ⭐ 8.5 | A | Hindi
+                    </span>
+
+                    <span class="tooltip">
+                        Rating based on user reviews
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button class="book-btn">
+                Book Now
+            </button>
+
+        </div>
+
+
+
+        <!-- CARD 6 -->
+
+        <div class="movie-card">
+
+            <div class="movie-image">
+
+                <img src="https://cdn.district.in/movies-assets/images/cinema/_Poster-d0d78f60-961a-11f1-8483-eb84b060bac3.jpg"
+                    alt="Movie poster">
+
+            </div>
+
+            <div class="movie-info">
+
+                <h3 class="movie-title">
+                    Mirzapur
+                </h3>
+
+                <div class="tooltip-container">
+
+                    <span class="movie-details">
+                        ⭐ 8.5 | A | Hindi
+                    </span>
+
+                    <span class="tooltip">
+                        Rating based on user reviews
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button class="book-btn">
+                Book Now
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- BOOKING NOTIFICATION -->
+
+    <div class="notification">
+        ✓ Booking Confirmed!
+    </div>
+
+
+</body>
+
+</html>
