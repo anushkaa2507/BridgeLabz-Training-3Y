@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +25,7 @@
             font-size: 36px;
         }
 
-        /* Gallery Grid */
+        
         .gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -35,7 +34,7 @@
             margin: auto;
         }
 
-        /* Image Container */
+        
         .photo {
             position: relative;
             overflow: hidden;
@@ -43,7 +42,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Images */
         .photo img {
             width: 100%;
             height: 250px;
@@ -54,12 +52,11 @@
             transition: transform 0.4s ease;
         }
 
-        /* Hover Scale */
         .photo:hover img {
             transform: scale(1.1);
         }
 
-        /* Caption Overlay */
+  
         .caption {
             position: absolute;
             bottom: 0;
@@ -81,14 +78,13 @@
             opacity: 1;
         }
 
-        /* Responsive - Tablet */
         @media (max-width: 800px) {
             .gallery {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* Responsive - Mobile */
+
         @media (max-width: 500px) {
             .gallery {
                 grid-template-columns: 1fr;
@@ -107,42 +103,39 @@
 
     <div class="gallery">
 
-        <!-- Image 1 -->
         <div class="photo">
             <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
                  alt="Mountain Landscape">
             <div class="caption">Beautiful Mountain</div>
         </div>
 
-        <!-- Image 2 -->
+
         <div class="photo">
             <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
                  alt="Beach">
             <div class="caption">Peaceful Beach</div>
         </div>
 
-        <!-- Image 3 -->
+
         <div class="photo">
             <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e"
                  alt="Forest">
             <div class="caption">Green Forest</div>
         </div>
 
-        <!-- Image 4 -->
         <div class="photo">
             <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e"
                  alt="Nature">
             <div class="caption">Beautiful Nature</div>
         </div>
 
-        <!-- Image 5 -->
         <div class="photo">
             <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e"
                  alt="Lake and Mountains">
             <div class="caption">Mountain Lake</div>
         </div>
 
-        <!-- Image 6 -->
+       
         <div class="photo">
             <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7"
                  alt="Landscape">
