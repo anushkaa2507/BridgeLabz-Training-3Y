@@ -1,5 +1,4 @@
-```css
-/* Apply border-box to all elements */
+
 * {
     box-sizing: border-box;
 }
@@ -10,7 +9,7 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Header */
+
 header {
     display: flex;
     justify-content: space-between;
@@ -36,7 +35,7 @@ nav a:hover {
     color: #3498db;
 }
 
-/* Main uses Flexbox */
+
 main {
     min-height: 75vh;
 
@@ -47,7 +46,7 @@ main {
     padding: 30px;
 }
 
-/* Main card */
+
 .card {
     width: 500px;
 
@@ -92,14 +91,14 @@ textarea {
     min-height: 100px;
 }
 
-/* Focus effect */
+
 input:focus,
 textarea:focus {
     outline: 3px solid #8ecae6;
     border-color: #3498db;
 }
 
-/* Buttons */
+
 .buttons {
     display: flex;
     gap: 15px;
@@ -131,7 +130,7 @@ button:focus {
     outline: 3px solid #f39c12;
 }
 
-/* Footer */
+
 footer {
     text-align: center;
     padding: 20px;
@@ -140,7 +139,7 @@ footer {
     color: white;
 }
 
-/* Responsive layout */
+
 @media (max-width: 600px) {
 
     header {
@@ -156,4 +155,4 @@ footer {
         padding: 15px;
     }
 }
-```
+
