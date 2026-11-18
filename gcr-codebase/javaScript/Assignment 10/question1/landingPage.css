@@ -1,0 +1,24 @@
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.hero {
+    background: linear-gradient(120deg, #16213e, #0f3460);
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+}
+
+/* Smooth hover effect */
+button {
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+nav a {
+    text-decoration: none;
+}

@@ -1,0 +1,19 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6fb;
+}
+
+.price-card {
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.price-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2) !important;
+}
+
+.price-card h2 {
+    font-weight: bold;
+}
