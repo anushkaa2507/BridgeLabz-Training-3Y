@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+    <style>
+        input {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            width: 250px;
+            border: 2px solid gray;
+        }
+
+        .valid {
+            border-color: green;
+        }
+
+        .invalid {
+            border-color: red;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Student Registration Form</h2>
+
+    <form id="studentForm">
+        <input type="text" id="name" placeholder="Enter Name">
+        <span id="nameError"></span>
+
+        <input type="text" id="email" placeholder="Enter Email">
+        <span id="emailError"></span>
+
+        <input type="text" id="phone" placeholder="Enter Phone">
+        <span id="phoneError"></span>
+
+        <input type="password" id="password" placeholder="Enter Password">
+        <span id="passwordError"></span>
+
+        <br>
+        <button type="submit">Register</button>
+    </form>
+
+    <h3 id="result"></h3>
+
+    <script>
+        const form = document.getElementById("studentForm");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            function validate(id, errorId, condition, message) {
+                let input = document.getElementById(id);
+                let error = document.getElementById(errorId);
+
+                if (condition.test(input.value.trim())) {
+                    input.className = "valid";
+                    error.textContent = "";
+                } else {
+                    input.className = "invalid";
+                    error.textContent = message;
+                    isValid = false;
+                }
+            }
+
+            validate("name", "nameError",
+                /^[A-Za-z ]+$/, "Only alphabets allowed");
+
+            validate("email", "emailError",
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email");
+
+            validate("phone", "phoneError",
+                /^\d{10}$/, "Enter exactly 10 digits");
+
+            validate("password", "passwordError",
+                /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).+$/,
+                "Must contain uppercase, number and special character");
+
+            document.getElementById("result").textContent =
+                isValid ? "Registration Successful!" : "Please fix errors.";
+        });
+    </script>
+
+</body>
+</html>
