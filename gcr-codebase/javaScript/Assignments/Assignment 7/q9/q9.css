@@ -1,0 +1,23 @@
+body {
+    text-align: center;
+    font-family: Arial;
+    margin: 50px;
+}
+
+input {
+    padding: 10px;
+}
+
+span {
+    color: red;
+    font-size: 13px;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#success {
+    color: green;
+}

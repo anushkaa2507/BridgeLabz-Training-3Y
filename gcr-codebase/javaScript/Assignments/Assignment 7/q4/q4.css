@@ -1,0 +1,27 @@
+body {
+    text-align: center;
+    font-family: Arial;
+    padding: 50px;
+    transition: 0.3s;
+}
+
+body.light {
+    background-color: white;
+    color: black;
+}
+
+body.dark {
+    background-color: #222;
+    color: white;
+}
+
+body.blue {
+    background-color: #cce5ff;
+    color: darkblue;
+}
+
+button {
+    padding: 12px;
+    margin: 10px;
+    cursor: pointer;
+}

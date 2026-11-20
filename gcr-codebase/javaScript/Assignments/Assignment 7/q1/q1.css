@@ -1,0 +1,29 @@
+body {
+    font-family: Arial;
+    text-align: center;
+    margin: 40px;
+}
+
+input {
+    padding: 10px;
+}
+
+button {
+    padding: 10px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+li {
+    margin: 15px;
+    list-style: none;
+}
+
+.edit {
+    background-color: orange;
+}
+
+.delete {
+    background-color: red;
+    color: white;
+}
